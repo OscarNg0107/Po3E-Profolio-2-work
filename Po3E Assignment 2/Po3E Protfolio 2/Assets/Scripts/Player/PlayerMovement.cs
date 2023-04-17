@@ -10,6 +10,7 @@ public class PlayerMovement : MonoBehaviour
     public float animationSpeed = 1.5f;
     public AudioSource on_rock_walk_audio;
     public AudioSource on_rock_run_audio;
+    public Camera follow_camera;
 
     private float elapsedTime = 0;
     private bool noBackMov = true;
@@ -40,7 +41,6 @@ public class PlayerMovement : MonoBehaviour
         float turn = Input.GetAxis("Turn");
         bool jump = Input.GetButton("Jump");
         MovementManagement(v, h, sneak, run, jump);
-        Debug.Log("AHSUODA");
     }
 
     void Update()
@@ -56,16 +56,15 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool(hash.runningBool, running);
 
-        anim.SetBool(hash.jumpingBool, jumping);
-
-        MovePlayerRelativeToCamera(vertical, horizontal);
+        anim.SetBool(hash.jumpingBool, jumping); 
 
         if (vertical > 0) 
         {
-            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
-            anim.SetBool("WalkBackwards", false);
+            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime); 
 
             Rigidbody ourBody = this.GetComponent<Rigidbody>();
+            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y, 0);
+            ourBody.transform.rotation = rotation;
             Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
             if (running)
             {
@@ -83,22 +82,58 @@ public class PlayerMovement : MonoBehaviour
                 elapsedTime = 0;
                 noBackMov = false;
             }
-            anim.SetFloat(hash.speedFloat, -1.5f, speedDampTime, Time.deltaTime);
-            anim.SetBool("WalkBackwards", true);
-
+            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
             float percentageComplete = elapsedTime / desiredDuration;
            
             Rigidbody ourBody = this.GetComponent<Rigidbody>();
-
-            float movement = Mathf.Lerp(0f, -0.025f, percentageComplete);
-            Vector3 moveBack = new Vector3(0f, 0f, movement);
-            moveBack = ourBody.transform.TransformDirection(moveBack);
-            ourBody.transform.position += moveBack;
+            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 180, 0);
+            ourBody.transform.rotation = rotation;
+            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
+            if (running)
+            {
+                moveForward = new Vector3(0f, 0f, 0.075f);
+            }
+            moveForward = ourBody.transform.TransformDirection(moveForward);
+            ourBody.transform.position += moveForward;
+            noBackMov = true;
         }
-        if(vertical == 0) 
+
+        if(horizontal > 0) 
+        {
+            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+
+            Rigidbody ourBody = this.GetComponent<Rigidbody>();
+            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 90, 0);
+            ourBody.transform.rotation = rotation;
+            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
+            if (running)
+            {
+                moveForward = new Vector3(0f, 0f, 0.075f);
+            }
+            moveForward = ourBody.transform.TransformDirection(moveForward);
+            ourBody.transform.position += moveForward;
+            noBackMov = true;
+        }
+
+        if(horizontal < 0) 
+        {
+            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+
+            Rigidbody ourBody = this.GetComponent<Rigidbody>();
+            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y -90, 0);
+            ourBody.transform.rotation = rotation;
+            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
+            if (running)
+            {
+                moveForward = new Vector3(0f, 0f, 0.075f);
+            }
+            moveForward = ourBody.transform.TransformDirection(moveForward);
+            ourBody.transform.position += moveForward;
+            noBackMov = true;
+        }
+        if(vertical == 0 && horizontal == 0) 
         {
             anim.SetFloat(hash.speedFloat, 0);
-            anim.SetBool("WalkBackwards", false);
             noBackMov = true;
         }
     }
@@ -133,22 +168,5 @@ public class PlayerMovement : MonoBehaviour
         {
             AudioSource.PlayClipAtPoint(wavingClip, transform.position);
         } 
-    }
-
-    void MovePlayerRelativeToCamera(float vertical, float horizontal) 
-    {
-        Rigidbody ourBody = this.GetComponent<Rigidbody>();
-        Vector3 forward = Camera.main.transform.forward;
-        Vector3 right = Camera.main.transform.right;
-        forward.y = 0;
-        right.y = 0;
-        forward = forward.normalized;
-        right = right.normalized;
-
-        Vector3 forwardRelativeVerticalInput = vertical * forward;
-        Vector3 rightRelativeVerticalInput = horizontal * right;
-
-        Vector3 cameraRelativeMovement = forwardRelativeVerticalInput + rightRelativeVerticalInput;
-        ourBody.transform.Translate(cameraRelativeMovement, Space.World);
     }
 }

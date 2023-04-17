@@ -23,10 +23,7 @@ public class FollowCamera : MonoBehaviour
     }
     private void LateUpdate()
     {
-
-        float desiredAngle = target.transform.eulerAngles.y;
-        Quaternion rotation = Quaternion.Euler(0, desiredAngle, 0);
-        transform.position = target.transform.position + (rotation * offset);
+        transform.position = target.transform.position + offset;
         transform.LookAt(target.transform);
 
         mouseX = Input.GetAxis("Mouse X");
@@ -36,14 +33,15 @@ public class FollowCamera : MonoBehaviour
       
         offset = Quaternion.Euler(0, mouseX, 0) * offset;
 
-        float angleBetwwen = Vector3.Angle(Vector3.up, transform.forward);
+        float angleBetween = Vector3.Angle(Vector3.up, transform.forward);
         float dist = Vector3.Distance(target.transform.position, transform.position);
+        //Debug.Log(angleBetween);
 
-        if (((angleBetwwen > minYAngle) && (mouseY < 0)) || ((angleBetwwen < maxYAngle) && (mouseY > 0)))
+        //if(angleBetween == Mathf.Clamp(angleBetween, minYAngle, maxYAngle) && mouseY !=0) 
+        if(((angleBetween > 90) && (mouseY < 0)) || ((angleBetween < 140) && (mouseY > 0)))
         {
             Vector3 LocalRight = target.transform.worldToLocalMatrix.MultiplyVector(transform.right);
             offset = Quaternion.AngleAxis(mouseY, LocalRight) * offset;
-
         }
 
         if (mouseZ > 0)
