@@ -40,6 +40,7 @@ public class PlayerMovement : MonoBehaviour
         float turn = Input.GetAxis("Turn");
         bool jump = Input.GetButton("Jump");
         MovementManagement(v, h, sneak, run, jump);
+        Debug.Log("AHSUODA");
     }
 
     void Update()
