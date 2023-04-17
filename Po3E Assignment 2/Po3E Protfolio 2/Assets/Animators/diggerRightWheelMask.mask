@@ -1,0 +1,265 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!319 &31900000
+AvatarMask:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: diggerRightWheelMask
+  m_Mask: 01000000010000000100000001000000010000000100000001000000010000000100000001000000010000000100000001000000
+  m_Elements:
+  - m_Path: 
+    m_Weight: 1
+  - m_Path: base
+    m_Weight: 1
+  - m_Path: base/back_hatch
+    m_Weight: 0
+  - m_Path: base/back_hatch/exhast
+    m_Weight: 0
+  - m_Path: base/back_hatch/handle
+    m_Weight: 0
+  - m_Path: base/base3
+    m_Weight: 0
+  - m_Path: base/fronf_wheel_shaft1
+    m_Weight: 0
+  - m_Path: base/ladder
+    m_Weight: 0
+  - m_Path: base/ladder/ladder
+    m_Weight: 0
+  - m_Path: base/ladder/polySurface8
+    m_Weight: 0
+  - m_Path: base/ladder/polySurface10
+    m_Weight: 0
+  - m_Path: base/left_wheels
+    m_Weight: 0
+  - m_Path: base/left_wheels/back_wheel
+    m_Weight: 0
+  - m_Path: base/left_wheels/front_wheel
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_0
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_1
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_2
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_3
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_4
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_5
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_6
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_7
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_8
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_9
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_10
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_11
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_12
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_13
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_14
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_15
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_16
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_17
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_18
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_19
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_20
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_21
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_22
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_23
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_24
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_25
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_26
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_27
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_28
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_29
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_30
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_31
+    m_Weight: 0
+  - m_Path: base/left_wheels/tracks/pCubeShape3_MASH1_Instancer_32
+    m_Weight: 0
+  - m_Path: base/right_wheels
+    m_Weight: 1
+  - m_Path: base/right_wheels/back_wheel
+    m_Weight: 1
+  - m_Path: base/right_wheels/front_wheel
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_0
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_1
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_2
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_3
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_4
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_5
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_6
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_7
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_8
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_9
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_10
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_11
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_12
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_13
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_14
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_15
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_16
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_17
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_18
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_19
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_20
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_21
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_22
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_23
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_24
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_25
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_26
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_27
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_28
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_29
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_30
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_31
+    m_Weight: 1
+  - m_Path: base/right_wheels/tracks/pCubeShape4_MASH2_Instancer_32
+    m_Weight: 1
+  - m_Path: base/turntable
+    m_Weight: 0
+  - m_Path: body_and_arm
+    m_Weight: 0
+  - m_Path: body_and_arm/arm
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/belt_arm
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/cog_arm
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/cutting_wheel
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/large_cog
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/small_cog
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/small_cog1
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/small_cog2
+    m_Weight: 0
+  - m_Path: body_and_arm/arm/small_cog3
+    m_Weight: 0
+  - m_Path: body_and_arm/body
+    m_Weight: 0
+  - m_Path: body_and_arm/body/back_door
+    m_Weight: 0
+  - m_Path: body_and_arm/body/back_door/door
+    m_Weight: 0
+  - m_Path: body_and_arm/body/back_door/door_handle
+    m_Weight: 0
+  - m_Path: body_and_arm/body/back_door/rear_window
+    m_Weight: 0
+  - m_Path: body_and_arm/body/body
+    m_Weight: 0
+  - m_Path: body_and_arm/body/body/polySurface1
+    m_Weight: 0
+  - m_Path: body_and_arm/body/body/polySurface1/polySurface6
+    m_Weight: 0
+  - m_Path: body_and_arm/body/cab
+    m_Weight: 0
+  - m_Path: body_and_arm/body/cab/windows
+    m_Weight: 0
+  - m_Path: body_and_arm/body/chair
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/desk
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever/stick
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever/top
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever1
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever1/stick
+    m_Weight: 0
+  - m_Path: body_and_arm/body/desk/lever1/top
+    m_Weight: 0
+  - m_Path: body_and_arm/body/floor
+    m_Weight: 0
+  - m_Path: body_and_arm/body/funel
+    m_Weight: 0
+  - m_Path: body_and_arm/body/funel2
+    m_Weight: 0
+  - m_Path: body_and_arm/body/funnel_base
+    m_Weight: 0
+  - m_Path: body_and_arm/body/hand_rails_top
+    m_Weight: 0
+  - m_Path: body_and_arm/body/hand_rails_top/polySurface7
+    m_Weight: 0
+  - m_Path: body_and_arm/body/hand_rails_top/polySurface9
+    m_Weight: 0
+  - m_Path: body_and_arm/body/ladder1
+    m_Weight: 0
+  - m_Path: body_and_arm/body/shell
+    m_Weight: 0
+  - m_Path: body_and_arm/key_pad
+    m_Weight: 0
+  - m_Path: body_and_arm/key_pad/pCube1
+    m_Weight: 0
+  - m_Path: body_and_arm/key_pad/pCube2
+    m_Weight: 0
