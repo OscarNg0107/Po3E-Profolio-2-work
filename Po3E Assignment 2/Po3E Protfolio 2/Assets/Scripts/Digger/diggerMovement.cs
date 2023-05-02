@@ -7,6 +7,7 @@ public class diggerMovement : MonoBehaviour
     public float speedDampTime = 0.01f;
     public float sensitivityX = 1.0f;
     public float animationSpeed = 1.5f;
+    public GameObject dusttrail;
 
     private Animator anim;
     private DiggerHashIDs hash;
@@ -50,6 +51,7 @@ public class diggerMovement : MonoBehaviour
             moveForward = ourBody.transform.TransformDirection(moveForward);
             ourBody.transform.position += moveForward;
             anim.SetBool("Backward", false);
+            dusttrail.SetActive(true);
 
         }
         if(vertical < 0) 
@@ -63,6 +65,7 @@ public class diggerMovement : MonoBehaviour
             moveBack = ourBody.transform.TransformDirection(moveBack);
 
             ourBody.transform.position += moveBack;
+            dusttrail.SetActive(false);
         }
 
         if(horizontal < 0) 
@@ -94,6 +97,7 @@ public class diggerMovement : MonoBehaviour
             anim.SetBool("Backward", false);
             anim.SetBool(hash.turnLeftBool, false);
             anim.SetBool(hash.turnRightBool, false);
+            dusttrail.SetActive(false);
         }
     }
 }
