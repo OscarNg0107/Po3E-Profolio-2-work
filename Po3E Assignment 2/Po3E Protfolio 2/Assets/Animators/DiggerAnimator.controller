@@ -336,13 +336,13 @@ AnimatorStateMachine:
     m_Position: {x: 30, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 6054832954868164224}
-    m_Position: {x: 30, y: 360, z: 0}
+    m_Position: {x: 30, y: 370, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 5774617700060923652}
     m_Position: {x: 470, y: 200, z: 0}
   - serializedVersion: 1
     m_State: {fileID: 1107792753501704068}
-    m_Position: {x: 470, y: 360, z: 0}
+    m_Position: {x: 460, y: 370, z: 0}
   m_ChildStateMachines: []
   m_AnyStateTransitions: []
   m_EntryTransitions: []
@@ -869,7 +869,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: left_wheel 0
+  m_Name: left_wheel 0(turning)
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions:
@@ -1089,7 +1089,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: left_wheel_backward
+  m_Name: left_wheel_backward (turning)
   m_Speed: -1
   m_CycleOffset: 0
   m_Transitions:
