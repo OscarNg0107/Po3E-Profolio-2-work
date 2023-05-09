@@ -12,20 +12,22 @@ public class GetInAndOutVehicle : MonoBehaviour
     public GameObject exit = null;
     public Camera DiggerCamera;
     public GameObject getInTrigger;
+    public Animator Digger_anim;
+    private DiggerHashIDs hash;
+    ParticleSystem[] dusttrails;
+    public GameObject dust;
 
     public ParticleSystem particle;
 
     private bool inVehicle;
 
-    // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
-        
+        dusttrails = dust.GetComponentsInChildren<ParticleSystem>();
     }
-
-    private void FixedUpdate()
+    private void Awake()
     {
-       
+        hash = GameObject.FindGameObjectWithTag("DiggerController").GetComponent<DiggerHashIDs>();
     }
     // Update is called once per frame
     void Update()
@@ -64,7 +66,21 @@ public class GetInAndOutVehicle : MonoBehaviour
         characterController.enabled = true;
         DiggerController.enabled = false;
         inVehicle = false;
+        Digger_anim.SetBool(hash.diggingBool, false);
         particle.Play();
+
+        Digger_anim.SetFloat(hash.speedFloat, 0);
+        Digger_anim.SetBool("Backward", false);
+        Digger_anim.SetBool(hash.turnLeftBool, false);
+        Digger_anim.SetBool(hash.turnRightBool, false);
+
+        foreach (ParticleSystem dusttrail in dusttrails)
+        {
+            if (dusttrail.isPlaying)
+            {
+                dusttrail.Stop();
+            }
+        }
 
         character.transform.position = exit.transform.position;
     }

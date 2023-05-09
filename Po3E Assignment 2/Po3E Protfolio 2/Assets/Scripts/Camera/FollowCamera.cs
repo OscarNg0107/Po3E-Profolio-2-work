@@ -6,6 +6,7 @@ public class FollowCamera : MonoBehaviour
 {
     public GameObject target;
     Vector3 offset;
+    Vector3 LocalRight;
 
     //public float mouseSensitivity = 100f;
 
@@ -20,6 +21,11 @@ public class FollowCamera : MonoBehaviour
     {
         Cursor.lockState = CursorLockMode.Locked;
         offset = transform.position - target.transform.position;
+    }
+
+    private void Awake()
+    {
+        LocalRight = target.transform.worldToLocalMatrix.MultiplyVector(transform.right);
     }
     private void LateUpdate()
     {
@@ -38,9 +44,8 @@ public class FollowCamera : MonoBehaviour
         //Debug.Log(angleBetween);
 
         //if(angleBetween == Mathf.Clamp(angleBetween, minYAngle, maxYAngle) && mouseY !=0) 
-        if(((angleBetween > 90) && (mouseY < 0)) || ((angleBetween < 140) && (mouseY > 0)))
+        if(((angleBetween > minYAngle) && (mouseY < 0)) || ((angleBetween < maxYAngle) && (mouseY > 0)))
         {
-            Vector3 LocalRight = target.transform.worldToLocalMatrix.MultiplyVector(transform.right);
             offset = Quaternion.AngleAxis(mouseY, LocalRight) * offset;
         }
 

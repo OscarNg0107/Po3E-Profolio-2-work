@@ -12,6 +12,7 @@ public class diggerMovement : MonoBehaviour
     ParticleSystem[] dusttrails;
     public GameObject dust;
 
+    private bool movingForward = false;
     private void Start()
     {
         dusttrails = dust.GetComponentsInChildren<ParticleSystem>();
@@ -33,6 +34,31 @@ public class diggerMovement : MonoBehaviour
         bool spinUp = Input.GetButton("Spin Up");
         bool spinDown = Input.GetButton("Spin Down");
         MovementManager(v, h, spinUp, spinDown);
+    }
+    void Update() 
+    {
+        if (movingForward) 
+        {
+            foreach (ParticleSystem dusttrail in dusttrails)
+            {
+                if (!dusttrail.isPlaying) 
+                {
+                    dusttrail.Play();
+                }
+            }
+        }
+
+        else 
+        {
+          foreach (ParticleSystem dusttrail in dusttrails)
+            {
+                if (dusttrail.isPlaying) 
+                {
+                    dusttrail.Stop();
+                } 
+            }  
+        }
+        
     }
 
     void MovementManager(float vertical , float horizontal, bool spinUp, bool spinDown) 
@@ -56,10 +82,7 @@ public class diggerMovement : MonoBehaviour
             moveForward = ourBody.transform.TransformDirection(moveForward);
             ourBody.transform.position += moveForward;
             anim.SetBool("Backward", false);
-            foreach(ParticleSystem dusttrail in dusttrails)
-            {
-                dusttrail.Play();
-            }
+            movingForward = true;
 
         }
         if(vertical < 0) 
@@ -73,11 +96,8 @@ public class diggerMovement : MonoBehaviour
             moveBack = ourBody.transform.TransformDirection(moveBack);
 
             ourBody.transform.position += moveBack;
-          
-            foreach (ParticleSystem dusttrail in dusttrails)
-            {
-                dusttrail.Stop();
-            }
+
+            movingForward = false;
         }
 
         if(horizontal < 0) 
@@ -109,11 +129,8 @@ public class diggerMovement : MonoBehaviour
             anim.SetBool("Backward", false);
             anim.SetBool(hash.turnLeftBool, false);
             anim.SetBool(hash.turnRightBool, false);
-           
-            foreach (ParticleSystem dusttrail in dusttrails)
-            {
-                dusttrail.Stop();
-            }
+
+            movingForward = false;
         }
     }
 }
