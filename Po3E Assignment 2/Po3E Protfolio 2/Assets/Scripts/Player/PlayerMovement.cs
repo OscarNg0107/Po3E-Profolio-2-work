@@ -11,6 +11,9 @@ public class PlayerMovement : MonoBehaviour
     public AudioSource on_rock_walk_audio;
     public AudioSource on_rock_run_audio;
     public Camera follow_camera;
+    public float rotateSpeed = 1;
+
+    Vector3 direction;
 
     private float elapsedTime = 0;
     private bool noBackMov = true;
@@ -56,86 +59,53 @@ public class PlayerMovement : MonoBehaviour
 
         anim.SetBool(hash.runningBool, running);
 
-        anim.SetBool(hash.jumpingBool, jumping); 
-
-        if (vertical > 0) 
-        {
-            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime); 
-
-            Rigidbody ourBody = this.GetComponent<Rigidbody>();
-            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y, 0);
-            ourBody.transform.rotation = rotation;
-            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
-            if (running)
-            {
-                moveForward = new Vector3(0f, 0f, 0.075f);
-            }
-            moveForward = ourBody.transform.TransformDirection(moveForward);
-            ourBody.transform.position += moveForward;
-            noBackMov = true;
-        }
-
-        if(vertical < 0) 
-        {
-            if(noBackMov == true) 
-            {
-                elapsedTime = 0;
-                noBackMov = false;
-            }
-            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
-            float percentageComplete = elapsedTime / desiredDuration;
-           
-            Rigidbody ourBody = this.GetComponent<Rigidbody>();
-            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 180, 0);
-            ourBody.transform.rotation = rotation;
-            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
-            if (running)
-            {
-                moveForward = new Vector3(0f, 0f, 0.075f);
-            }
-            moveForward = ourBody.transform.TransformDirection(moveForward);
-            ourBody.transform.position += moveForward;
-            noBackMov = true;
-        }
-
-        if(horizontal > 0) 
-        {
-            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
-
-            Rigidbody ourBody = this.GetComponent<Rigidbody>();
-            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 90, 0);
-            ourBody.transform.rotation = rotation;
-            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
-            if (running)
-            {
-                moveForward = new Vector3(0f, 0f, 0.075f);
-            }
-            moveForward = ourBody.transform.TransformDirection(moveForward);
-            ourBody.transform.position += moveForward;
-            noBackMov = true;
-        }
-
-        if(horizontal < 0) 
-        {
-            anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
-
-            Rigidbody ourBody = this.GetComponent<Rigidbody>();
-            Quaternion rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y -90, 0);
-            ourBody.transform.rotation = rotation;
-            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
-            if (running)
-            {
-                moveForward = new Vector3(0f, 0f, 0.075f);
-            }
-            moveForward = ourBody.transform.TransformDirection(moveForward);
-            ourBody.transform.position += moveForward;
-            noBackMov = true;
-        }
-        if(vertical == 0 && horizontal == 0) 
+        anim.SetBool(hash.jumpingBool, jumping);
+        
+        if (vertical == 0 && horizontal == 0)
         {
             anim.SetFloat(hash.speedFloat, 0);
             noBackMov = true;
         }
+
+        else
+        {
+            Rigidbody ourBody = this.GetComponent<Rigidbody>();
+            Quaternion rotation;
+            if (vertical > 0)
+            {
+                anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+                rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y, 0);
+                ourBody.transform.rotation = Quaternion.Lerp(ourBody.transform.rotation, rotation, Time.deltaTime * rotateSpeed);
+            }
+            if (vertical < 0)
+            {
+                anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+                rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 180, 0);
+                ourBody.transform.rotation = Quaternion.Lerp(ourBody.transform.rotation, rotation, Time.deltaTime * rotateSpeed);
+            }
+            if (horizontal > 0)
+            {
+                anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+                rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y + 90, 0);
+                ourBody.transform.rotation = Quaternion.Lerp(ourBody.transform.rotation, rotation, Time.deltaTime * rotateSpeed);
+            }
+            if (horizontal < 0)
+            {
+                anim.SetFloat(hash.speedFloat, animationSpeed, speedDampTime, Time.deltaTime);
+                rotation = Quaternion.Euler(0, follow_camera.transform.eulerAngles.y - 90, 0);
+                ourBody.transform.rotation = Quaternion.Lerp(ourBody.transform.rotation, rotation, Time.deltaTime * rotateSpeed);
+            }
+
+            Vector3 moveForward = new Vector3(0f, 0f, 0.015f);
+            if (running)
+            {
+                moveForward = new Vector3(0f, 0f, 0.075f);
+            }
+            moveForward = ourBody.transform.TransformDirection(moveForward);
+            ourBody.transform.position += moveForward;
+            noBackMov = true;
+        }
+
     }
 
     void AudioManagement(bool wave) 

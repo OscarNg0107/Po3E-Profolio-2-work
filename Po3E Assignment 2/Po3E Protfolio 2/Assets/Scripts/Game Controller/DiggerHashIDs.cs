@@ -9,6 +9,8 @@ public class DiggerHashIDs : MonoBehaviour
     public int turnLeftBool;
     public int turnRightBool;
     public int diggingBool;
+    public int startBool;
+    public int cuttingWheelRotationSpeedFloat;
 
     private void Awake()
     {
@@ -17,5 +19,7 @@ public class DiggerHashIDs : MonoBehaviour
         turnLeftBool = Animator.StringToHash("TurnLeft");
         turnRightBool = Animator.StringToHash("TurnRight");
         diggingBool = Animator.StringToHash("Digging");
+        startBool = Animator.StringToHash("Start");
+        cuttingWheelRotationSpeedFloat = Animator.StringToHash("CuttingWheelRotationSpeed");
     }
 }

@@ -16,6 +16,7 @@ public class FollowCamera : MonoBehaviour
 
     public float maxYAngle = 140;
     public float minYAngle = 90;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -23,10 +24,6 @@ public class FollowCamera : MonoBehaviour
         offset = transform.position - target.transform.position;
     }
 
-    private void Awake()
-    {
-        LocalRight = target.transform.worldToLocalMatrix.MultiplyVector(transform.right);
-    }
     private void LateUpdate()
     {
         transform.position = target.transform.position + offset;
@@ -46,7 +43,7 @@ public class FollowCamera : MonoBehaviour
         //if(angleBetween == Mathf.Clamp(angleBetween, minYAngle, maxYAngle) && mouseY !=0) 
         if(((angleBetween > minYAngle) && (mouseY < 0)) || ((angleBetween < maxYAngle) && (mouseY > 0)))
         {
-            offset = Quaternion.AngleAxis(mouseY, LocalRight) * offset;
+            offset = Quaternion.AngleAxis(mouseY, transform.right) * offset;
         }
 
         if (mouseZ > 0)
@@ -59,4 +56,5 @@ public class FollowCamera : MonoBehaviour
             offset = Vector3.Scale(offset, new Vector3(0.95f, 0.95f, 0.95f));
         }
     }
+
 }

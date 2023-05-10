@@ -5,17 +5,31 @@ using UnityEngine;
 public class diggerMovement : MonoBehaviour
 {
     public float speedDampTime = 0.01f;
+    public float rotationSpeedDampTime = 2f;
     public float sensitivityX = 1.0f;
     public float animationSpeed = 1.5f;
     private Animator anim;
     private DiggerHashIDs hash;
-    ParticleSystem[] dusttrails;
-    public GameObject dust;
+
+    public float rotationSpeed;
+
+    ParticleSystem[] dusttrailsF;
+    public GameObject dustF;
+
+    ParticleSystem[] dusttrailsB;
+    public GameObject dustB;
+
+    ParticleSystem[] dusttrailsTurn;
+    public GameObject dustT;
 
     private bool movingForward = false;
+    private bool movingBack = false;
+    private bool turning = false;
     private void Start()
     {
-        dusttrails = dust.GetComponentsInChildren<ParticleSystem>();
+        dusttrailsF = dustF.GetComponentsInChildren<ParticleSystem>();
+        dusttrailsB = dustB.GetComponentsInChildren<ParticleSystem>();
+        dusttrailsTurn = dustT.GetComponentsInChildren<ParticleSystem>();
     }
 
     private void Awake()
@@ -37,38 +51,81 @@ public class diggerMovement : MonoBehaviour
     }
     void Update() 
     {
-        if (movingForward) 
+        if (movingForward)
         {
-            foreach (ParticleSystem dusttrail in dusttrails)
+            foreach (ParticleSystem dusttrail in dusttrailsF)
             {
-                if (!dusttrail.isPlaying) 
+                if (!dusttrail.isPlaying)
                 {
                     dusttrail.Play();
                 }
             }
         }
-
-        else 
+        else
         {
-          foreach (ParticleSystem dusttrail in dusttrails)
+            foreach (ParticleSystem dusttrail in dusttrailsF)
             {
-                if (dusttrail.isPlaying) 
+                if (dusttrail.isPlaying)
                 {
                     dusttrail.Stop();
-                } 
-            }  
+                }
+            }
         }
-        
+
+        if (movingBack)
+        {
+            foreach (ParticleSystem dusttrail in dusttrailsB)
+            {
+                if (!dusttrail.isPlaying)
+                {
+                    dusttrail.Play();
+                }
+            }
+        }
+        else
+        {
+            foreach (ParticleSystem dusttrail in dusttrailsB)
+            {
+                if (dusttrail.isPlaying)
+                {
+                    dusttrail.Stop();
+                }
+            }
+        }
+
+        if (turning)
+        {
+            foreach (ParticleSystem dusttrail in dusttrailsTurn)
+            {
+                if (!dusttrail.isPlaying)
+                {
+                    dusttrail.Play();
+                }
+            }
+        }
+        else
+        {
+            foreach (ParticleSystem dusttrail in dusttrailsTurn)
+            {
+                if (dusttrail.isPlaying)
+                {
+                    dusttrail.Stop();
+                }
+            }
+        }
+
     }
 
     void MovementManager(float vertical , float horizontal, bool spinUp, bool spinDown) 
     {
         if (spinUp) 
         {
+            anim.SetFloat(hash.cuttingWheelRotationSpeedFloat, rotationSpeed, rotationSpeedDampTime, Time.deltaTime);
             anim.SetBool(hash.diggingBool, true);
         }
         if (spinDown) 
         {
+            anim.SetFloat(hash.cuttingWheelRotationSpeedFloat, 0f, rotationSpeedDampTime, Time.deltaTime);
             anim.SetBool(hash.diggingBool, false);
         }
         
@@ -83,6 +140,8 @@ public class diggerMovement : MonoBehaviour
             ourBody.transform.position += moveForward;
             anim.SetBool("Backward", false);
             movingForward = true;
+            movingBack = false;
+            turning = false;
 
         }
         if(vertical < 0) 
@@ -98,13 +157,24 @@ public class diggerMovement : MonoBehaviour
             ourBody.transform.position += moveBack;
 
             movingForward = false;
+            movingBack = true;
+            turning = false;
         }
 
         if(horizontal < 0) 
         {
-            anim.SetBool(hash.turnLeftBool, true);
-            anim.SetBool(hash.turnRightBool, false);
-
+            if(vertical == 0) 
+            {
+                anim.SetFloat(hash.speedFloat, 0f, speedDampTime, Time.deltaTime);
+                anim.SetBool(hash.turnLeftBool, true);
+                anim.SetBool(hash.turnRightBool, false);
+                turning = true;
+            }
+            else 
+            {
+                turning = false;
+            }
+       
             Rigidbody ourBody = this.GetComponent<Rigidbody>();
 
             Quaternion deltaRotation = Quaternion.Euler(0f, horizontal * sensitivityX, 0f);
@@ -114,8 +184,17 @@ public class diggerMovement : MonoBehaviour
 
         if(horizontal > 0) 
         {
-            anim.SetBool(hash.turnRightBool, true);
-            anim.SetBool(hash.turnLeftBool, false);
+            if(vertical == 0) 
+            {
+                anim.SetFloat(hash.speedFloat, 0f, speedDampTime, Time.deltaTime);
+                anim.SetBool(hash.turnRightBool, true);
+                anim.SetBool(hash.turnLeftBool, false);
+                turning = true;
+            }
+            else
+            {
+                turning = false;
+            }
 
             Rigidbody ourBody = this.GetComponent<Rigidbody>();
 
@@ -131,6 +210,8 @@ public class diggerMovement : MonoBehaviour
             anim.SetBool(hash.turnRightBool, false);
 
             movingForward = false;
+            movingBack = false;
+            turning = false;
         }
     }
 }
