@@ -1,24 +1,24 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using Cinemachine;
 
 public class GetInAndOutVehicle : MonoBehaviour
 {
     public GameObject character = null;
     public PlayerMovement characterController;
-    public Camera PlayerCamera;
-    public FollowCamera PlayerFollowCamera;
+    
     public GameObject charaterUI;
-
+    public CinemachineFreeLook playerCam; 
     public diggerMovement DiggerController;
     public GameObject exit = null;
-    public Camera DiggerCamera;
+    
     public GameObject getInTrigger;
     public Animator Digger_anim;
     private DiggerHashIDs hash;
     ParticleSystem[] dusttrails;
     public GameObject dust;
-    public FollowCamera DiggerFollowCamera;
+    public CinemachineFreeLook diggerCam;
     public GameObject diggerUI;
 
     public GameObject buttonHint;
@@ -66,11 +66,9 @@ public class GetInAndOutVehicle : MonoBehaviour
     void GetIn() 
     {
         Digger_anim.SetBool(hash.startBool, true);
-        DiggerCamera.transform.rotation = Quaternion.Euler(0, 0, 0);
-        DiggerCamera.enabled = true;
-        PlayerCamera.enabled = false;
-        DiggerFollowCamera.enabled = true;
-        PlayerFollowCamera.enabled = false;
+        playerCam.Priority = 0;
+        diggerCam.transform.position = new Vector3(0, 0, 0);
+        diggerCam.Priority = 10;
         character.SetActive(false);
         characterController.enabled = false;
         DiggerController.enabled = true;
@@ -82,10 +80,9 @@ public class GetInAndOutVehicle : MonoBehaviour
     void GetOut() 
     {
         Digger_anim.SetBool(hash.startBool, false);
-        DiggerCamera.enabled = false;
-        PlayerCamera.enabled = true;
-        DiggerFollowCamera.enabled = false;
-        PlayerFollowCamera.enabled = true;
+        playerCam.transform.position = new Vector3(0, 0, 0);
+        playerCam.Priority = 10;
+        diggerCam.Priority = 0;
         character.SetActive(true);
         characterController.enabled = true;
         DiggerController.enabled = false;
@@ -111,4 +108,10 @@ public class GetInAndOutVehicle : MonoBehaviour
 
         character.transform.position = exit.transform.position;
     }
+
+    public bool GetinVehicleBool()
+    {
+        return inVehicle;
+    }
 }
+
